@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * @author oudaming
  * @date 2020-12-30 15:29
  */
-public class MergeIntervals {
+public class _56MergeIntervals {
     public static void main(String[] args) {
 //        int[][] example = new int[4][2];
 //        example[0] = new int[]{1, 3};
@@ -27,7 +27,7 @@ public class MergeIntervals {
         example[0] = new int[]{1, 4};
         example[1] = new int[]{4, 5};
 
-        int[][] merge = new MergeIntervals().merge(example);
+        int[][] merge = new _56MergeIntervals().merge(example);
         System.out.println(merge);
     }
 

@@ -12,7 +12,7 @@ package cn.leetcode.dynamicPlanning;
  * @author oudaming
  * @date 2020/11/14 0014 17:04
  */
-public class MaximumSubarray {
+public class _53MaximumSubarray {
     public int maxSubArray(int[] nums) {
         int dp[] = new int[nums.length];
         dp[0] = nums[0];
@@ -25,6 +25,6 @@ public class MaximumSubarray {
     }
 
     public static void main(String[] args) {
-        System.out.println(new MaximumSubarray().maxSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}));
+        System.out.println(new _53MaximumSubarray().maxSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}));
     }
 }
