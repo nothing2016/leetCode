@@ -28,7 +28,6 @@ public class _494TargetSum {
         int[] nums = {1, 1, 1, 1, 1};
         int S = 3;
         System.out.println(new _494TargetSum().findTargetSumWays(nums, S));
-        System.out.println(new _494TargetSum().findTargetSumWays2(nums, S));
     }
 
     public int findTargetSumWays(int[] nums, int S) {
@@ -47,35 +46,5 @@ public class _494TargetSum {
         int p1 = process(nums, index + 1, rest + nums[index]);
         int p2 = process(nums, index + 1, rest - nums[index]);
         return p1 + p2;
-    }
-
-    public int findTargetSumWays2(int[] nums, int S) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
-        int[][] dp = new int[nums.length + 1][S + 1];
-        dp[nums.length][0] = 1;
-        for (int index = nums.length - 1; index >= 0; index--) {
-            for (int rest = 0; rest <= S; rest++) {
-                if (rest + nums[index] >= 0
-                        && rest + nums[index] <= S
-                        && rest - nums[index] >= 0
-                        && rest - nums[index] <= S) {
-                    dp[index][rest] = dp[index + 1][rest + nums[index]] + dp[index + 1][rest - nums[index]];
-                } else {
-                    if (rest + nums[index] >= 0
-                            && rest + nums[index] <= rest) {
-                        dp[index][rest] = dp[index + 1][rest + nums[index]];
-                    } else if (rest - nums[index] >= 0
-                            && rest - nums[index] <= rest) {
-                        dp[index][rest] = dp[index + 1][rest - nums[index]];
-                    } else {
-                        dp[index][rest] = 0;
-                    }
-
-                }
-            }
-        }
-        return dp[0][S];
     }
 }
