@@ -42,7 +42,6 @@ public class _416PartitionEqualSubsetSum {
         if (sum % 2 != 0) {
             return false;
         }
-        int dp[][] = new int[nums.length][sum / 2];
         return process(nums, 0, sum / 2);
     }
 
