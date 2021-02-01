@@ -19,54 +19,71 @@ package cn.leetcode;
  */
 public class _29DivideTwoIntegers {
     public static void main(String[] args) {
-//        int divide = new _29DivideTwoIntegers().divide(10, 3);
-//        System.out.println(divide);
-//        divide = new _29DivideTwoIntegers().divide(7, -3);
-//        System.out.println(divide);
-//        divide = new _29DivideTwoIntegers().divide(1, 1);
-//        System.out.println(divide);
-//        divide = new _29DivideTwoIntegers().divide(-2147483648, -1);
-//        System.out.println(divide);
-////        int divide = new _29DivideTwoIntegers().divide(2, 1);
-//        divide = new _29DivideTwoIntegers().divide(2147483647, 1);
-//        int divide = new _29DivideTwoIntegers().divide(-1, 1);
-//        int divide = new _29DivideTwoIntegers().divide(-2147483648, 1);
-        int divide = new _29DivideTwoIntegers().divide(-2147483648, 2);
+        int divide = new _29DivideTwoIntegers().divide(10, 3);
+        System.out.println(divide);
+        divide = new _29DivideTwoIntegers().divide(7, -3);
+        System.out.println(divide);
+        divide = new _29DivideTwoIntegers().divide(1, 1);
+        System.out.println(divide);
+        divide = new _29DivideTwoIntegers().divide(-2147483648, -1);
+        System.out.println(divide);
+        divide = new _29DivideTwoIntegers().divide(2, 1);
+        System.out.println(divide);
+        divide = new _29DivideTwoIntegers().divide(2147483647, 1);
+        System.out.println(divide);
+        divide = new _29DivideTwoIntegers().divide(-1, 1);
+        System.out.println(divide);
+        divide = new _29DivideTwoIntegers().divide(-2147483648, 1);
+        System.out.println(divide);
+        divide = new _29DivideTwoIntegers().divide(-2147483648, 2);
         System.out.println(divide);
     }
 
     public int divide(int dividend, int divisor) {
-        // 结果是否是负数
-        boolean isNegative = ((dividend >>> 31 & 1) ^ (divisor >>> 31 & 1)) == 1 ? true : false;
-        if (dividend == Integer.MIN_VALUE) {
-            if (divisor == -1) {
-                return Integer.MAX_VALUE;
-            }
-            if (divisor == 1) {
-                return Integer.MIN_VALUE;
-            }
+        if (divisor == 0) {
+            return Integer.MAX_VALUE;
         }
-
-        if (divisor == Integer.MIN_VALUE) {
-            return dividend == Integer.MIN_VALUE ? 1 : 0;
-        }
-
-        dividend = Math.abs(dividend);
-        divisor = Math.abs(divisor);
-
-        if (divisor > dividend) {
+        if (dividend == 0) {
             return 0;
         }
-        int sum = divisor;
-        int ans = 0;
-        while (sum <= dividend) {
-            if (sum > Integer.MAX_VALUE - divisor) {
-                ans++;
-                break;
-            }
-            ans++;
-            sum += divisor;
+        // 结果是否是负数
+        boolean isNegative = ((dividend >>> 31 & 1) ^ (divisor >>> 31 & 1)) == 1 ? true : false;
+        // 负数相除溢出的情况
+        if (dividend == Integer.MIN_VALUE && divisor == -1) {
+            return Integer.MAX_VALUE;
         }
+        // 整数的范围在[-2^31 , 2^31 -1],所以全部变成负数来除就不会溢出
+        dividend = dividend > 0 ? -dividend : dividend;
+        divisor = divisor > 0 ? -divisor : divisor;
+        int ans = process(dividend, divisor);
+
         return isNegative ? -ans : ans;
     }
+
+    /**
+     * a % b
+     *
+     * @param a 负数
+     * @param b 负数
+     * @return
+     */
+    private int process(int a, int b) {
+        // 如果abs(a) < abs(b),结果肯定是0
+        if (a > b) {
+            return 0;
+        }
+        int ans = 1;
+        int tmpSum = b;
+        // 负数 + 负数 如果溢出，值就是正数，这里需要判断一下溢出
+        while (tmpSum + tmpSum >= a && tmpSum + tmpSum < 0) {
+            // 这里直接翻倍是为了加速
+            ans += ans;
+            tmpSum += tmpSum;
+        }
+        // 剩下不能翻倍的递归计算一下即可
+        return ans + process(a - tmpSum, b);
+
+    }
+
+
 }
