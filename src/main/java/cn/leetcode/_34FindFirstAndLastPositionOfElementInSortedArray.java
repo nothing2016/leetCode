@@ -19,10 +19,10 @@ package cn.leetcode;
 public class _34FindFirstAndLastPositionOfElementInSortedArray {
     public static void main(String[] args) {
 //        int[] nums = {5, 7, 7, 8, 8, 10};
-//        int[] nums = {1, 2, 3, 4, 5, 6, 7};
-        int[] nums = {7, 7, 7, 7, 7, 7, 7};
-//        printArray(new _34FindFirstAndLastPositionOfElementInSortedArray().searchRange2(nums, 7));
-        printArray(new _34FindFirstAndLastPositionOfElementInSortedArray().searchRange(nums, 7));
+        int[] nums = {1, 2, 4, 4, 5, 6, 7};
+//        int[] nums = {7, 7, 7, 7, 7, 7, 7};
+        printArray(new _34FindFirstAndLastPositionOfElementInSortedArray().searchRange2(nums, 4));
+        printArray(new _34FindFirstAndLastPositionOfElementInSortedArray().searchRange(nums, 4));
 //        printArray(new _34FindFirstAndLastPositionOfElementInSortedArray().searchRange(nums, 7));
 //        printArray(new _34FindFirstAndLastPositionOfElementInSortedArray().searchRange(nums, 5));
 //        printArray(new _34FindFirstAndLastPositionOfElementInSortedArray().searchRange(nums, 10));
@@ -125,9 +125,9 @@ public class _34FindFirstAndLastPositionOfElementInSortedArray {
             int mid = (l + r) / 2;
             if (target <= nums[mid]) {
                 rightIndex = mid;
-                r--;
+                r = mid - 1;
             } else {
-                l++;
+                l = mid + 1;
             }
         }
         return rightIndex;
@@ -151,9 +151,9 @@ public class _34FindFirstAndLastPositionOfElementInSortedArray {
             int mid = (l + r) / 2;
             if (target < nums[mid]) {
                 rightIndex = mid;
-                r--;
+                r = mid - 1;
             } else {
-                l++;
+                l = mid + 1;
             }
         }
         return rightIndex;
