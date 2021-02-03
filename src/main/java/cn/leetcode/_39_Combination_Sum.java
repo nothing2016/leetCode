@@ -58,14 +58,16 @@ public class _39_Combination_Sum {
             ans.add(new ArrayList<Integer>(combine));
             return;
         }
-        // 1.直接跳过当前数
-        dfs(candidates, target, ans, combine, idx + 1);
 
-        // 2.选择当前数
+
+        // 1.选择当前数
         combine.add(candidates[idx]);
         dfs(candidates, target - candidates[idx], ans, combine, idx);
         // 回溯
         combine.remove(combine.size() - 1);
+
+        // 2.直接跳过当前数
+        dfs(candidates, target, ans, combine, idx + 1);
 
     }
 
