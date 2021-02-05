@@ -1,4 +1,4 @@
-package cn.leetcode.dynamicPlanning;
+package cn.leetcode;
 
 /**
  * 55. 跳跃游戏

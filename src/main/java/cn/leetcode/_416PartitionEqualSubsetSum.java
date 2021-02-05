@@ -1,4 +1,4 @@
-package cn.leetcode.dynamicPlanning;
+package cn.leetcode;
 
 /**
  * 416. 分割等和子集

@@ -1,4 +1,4 @@
-package cn.leetcode.dynamicPlanning;
+package cn.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;

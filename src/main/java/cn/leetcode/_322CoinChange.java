@@ -1,4 +1,4 @@
-package cn.leetcode.dynamicPlanning;
+package cn.leetcode;
 
 /**
  * 322. 零钱兑换

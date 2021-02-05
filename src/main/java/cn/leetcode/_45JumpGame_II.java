@@ -1,4 +1,4 @@
-package cn.leetcode.dynamicPlanning;
+package cn.leetcode;
 
 /**
  * 45. 跳跃游戏 II  力扣
