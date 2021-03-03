@@ -3,14 +3,14 @@ package cn.leetcode;
 import java.util.*;
 
 /**
- * 102. 二叉树的层序遍历
- * 给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。
+ * 107. 二叉树的层序遍历 II
+ * <p>
+ * 给定一个二叉树，返回其节点值自底向上的层序遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
  *
  * @author oudaming
- * @date 2021-03-03 14:11
+ * @date 2021-03-03 15:32
  */
-public class _102_Binary_Tree_Level_Order_Traversal {
-
+public class _107_Binary_Tree_Level_Order_Traversal_II {
     public static void main(String[] args) {
 
 
@@ -56,13 +56,13 @@ public class _102_Binary_Tree_Level_Order_Traversal {
         node9.right = node13;
 
 
-        List<List<Integer>> lists = new _102_Binary_Tree_Level_Order_Traversal().levelOrder(new TreeNode(10));
+        List<List<Integer>> lists = new _107_Binary_Tree_Level_Order_Traversal_II().levelOrderBottom(node1);
         for (List<Integer> item : lists) {
             System.out.println(item);
         }
     }
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
@@ -71,7 +71,7 @@ public class _102_Binary_Tree_Level_Order_Traversal {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
-        TreeMap<Integer, List<Integer>> map = new TreeMap<>();
+        TreeMap<Integer, List<Integer>> map = new TreeMap<>((a, b) -> b - a);
 
         HashMap<TreeNode, Integer> level = new HashMap<>();
         level.put(root, 1);
