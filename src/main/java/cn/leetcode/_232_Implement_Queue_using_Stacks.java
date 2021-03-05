@@ -16,6 +16,8 @@ import java.util.Stack;
  * <p>
  * 你只能使用标准的栈操作 —— 也就是只有push to top,peek/pop from top,size, 和is empty操作是合法的。
  * 你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。
+ * <p>
+ * 题解：使用两个栈stack1和stack2,当有数据push进来的时候，直接往stack1上push,当有pop和peek的时候，从stack2上操作，只有当stack2是空的时候，将stack1中的数据全部倒到stack2中即可
  *
  * @author oudaming
  * @date 2021-03-05 10:12
