@@ -29,8 +29,8 @@ import java.util.List;
  */
 public class _139_Word_Break {
     public static void main(String[] args) {
-        System.out.println(new _139_Word_Break().wordBreak("leetcode", new ArrayList<>(Arrays.asList("leet", "code"))));
-        System.out.println(wordBreakDpWay("leetcode", new ArrayList<>(Arrays.asList("leet", "code"))));
+//        System.out.println(new _139_Word_Break().wordBreak("leetcode", new ArrayList<>(Arrays.asList("leet", "code"))));
+//        System.out.println(wordBreakDpWay("leetcode", new ArrayList<>(Arrays.asList("leet", "code"))));
 
 //        System.out.println(new _139_Word_Break().wordBreak("applepenapple", new ArrayList<>(Arrays.asList("apple", "pen"))));
 //        System.out.println(wordBreakDpWay("applepenapple", new ArrayList<>(Arrays.asList("apple", "pen"))));
