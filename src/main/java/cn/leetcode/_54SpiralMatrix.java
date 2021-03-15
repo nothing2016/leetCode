@@ -30,6 +30,11 @@ public class _54SpiralMatrix {
 
 
     public static void main(String[] args) {
+//        int[][] matrix = {
+//                {1, 2, 3, 4, 15},
+//                {5, 6, 8, 9, 16},
+//                {10, 11, 12, 13, 17},
+//        };
 //        int[][] matrix = new int[4][3];
 //        matrix[0] = new int[]{19, 12, 45};
 //        matrix[1] = new int[]{23, 1, 67};
@@ -38,11 +43,70 @@ public class _54SpiralMatrix {
 //        int[][] matrix = new int[2][1];
 //        matrix[0] = new int[]{1};
 //        matrix[1] = new int[]{2};
-        int[][] matrix = new int[2][1];
-        matrix[0] = new int[]{1};
-        matrix[1] = new int[]{3};
-        List<Integer> integers = new _54SpiralMatrix().spiralOrder(matrix);
+//        int[][] matrix = new int[2][1];
+//        matrix[0] = new int[]{1};
+//        matrix[1] = new int[]{3};
+        int[][] matrix = {
+                {1},
+                {2},
+                {3},
+                {4},
+                {5},
+        };
+        List<Integer> integers = new _54SpiralMatrix().spiralOrder2(matrix);
         integers.forEach(System.out::println);
+    }
+
+    public List<Integer> spiralOrder2(int[][] matrix) {
+        List<Integer> ans = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) {
+            return ans;
+        }
+        int N = matrix.length;
+        int M = matrix[0].length;
+        int sR = 0;
+        int sC = 0;
+        int eR = N - 1;
+        int eC = M - 1;
+        while (sR <= eR && sC <= eC) {
+            printArray(sR, sC, eR, eC, ans, matrix);
+            sR++;
+            sC++;
+            eR--;
+            eC--;
+        }
+
+        return ans;
+    }
+
+    private void printArray(int sR, int sC, int eR, int eC, List<Integer> ans, int[][] matrix) {
+        int row = sR;
+        int col = sC;
+        if (sR == eR) {
+            while (col <= eC) {
+                ans.add(matrix[row][col++]);
+            }
+            return;
+        }
+        if (sC == eC) {
+            while (row <= eR) {
+                ans.add(matrix[row++][col]);
+            }
+            return;
+        }
+
+        while (col < eC) {
+            ans.add(matrix[row][col++]);
+        }
+        while (row < eR) {
+            ans.add(matrix[row++][col]);
+        }
+        while (col > sC) {
+            ans.add(matrix[row][col--]);
+        }
+        while (row > sR) {
+            ans.add(matrix[row--][col]);
+        }
     }
 
     public List<Integer> spiralOrder(int[][] matrix) {
