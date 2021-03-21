@@ -24,6 +24,11 @@ import java.util.Set;
  * @date 2021-02-19 16:03
  */
 public class _73_Set_Matrix_Zeroes {
+    /**
+     * O(n +ｍ)空间算法
+     *
+     * @param matrix
+     */
     public void setZeroes(int[][] matrix) {
         int R = matrix.length;
         int C = matrix[0].length;
@@ -48,4 +53,57 @@ public class _73_Set_Matrix_Zeroes {
             }
         }
     }
+
+    /**
+     * 常数空间复杂度
+     *
+     * @param matrix
+     */
+    public static void setZeroes1(int[][] matrix) {
+        // 记录0行0列是否有0? 如果有，在1行1列之后变成0后，再设置0行0列的值
+        boolean row0Zero = false;
+        boolean col0Zero = false;
+        int i = 0;
+        int j = 0;
+        for (i = 0; i < matrix[0].length; i++) {
+            if (matrix[0][i] == 0) {
+                row0Zero = true;
+                break;
+            }
+        }
+        for (i = 0; i < matrix.length; i++) {
+            if (matrix[i][0] == 0) {
+                col0Zero = true;
+                break;
+            }
+        }
+        // 从1行1列开始，如果matrix[i][j]为0，那么记录对应的第一行和第一列值为0
+        for (i = 1; i < matrix.length; i++) {
+            for (j = 1; j < matrix[0].length; j++) {
+
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+        for (i = 1; i < matrix.length; i++) {
+            for (j = 1; j < matrix[0].length; j++) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        if (row0Zero) {
+            for (i = 0; i < matrix[0].length; i++) {
+                matrix[0][i] = 0;
+            }
+        }
+        if (col0Zero) {
+            for (i = 0; i < matrix.length; i++) {
+                matrix[i][0] = 0;
+            }
+        }
+    }
+
 }
