@@ -54,28 +54,30 @@ public class _354_Russian_Doll_Envelopes {
             return 0;
         }
         Envelope[] envelopes = getSortedEnvelopes(matrix);
-        // 最后的结果中，高度的数组
-        int[] height = new int[matrix.length];
-        height[0] = envelopes[0].h;
-        int right = 0;
+        // ends数组放的值是高度，从小到大，能加速最长递增子序列的求解
+        int[] ends = new int[matrix.length];
+        ends[0] = envelopes[0].h;
+        int right = 0;// 有效值的最右范围 right]
         int l = 0;
         int r = 0;
         int m = 0;
         for (int i = 1; i < envelopes.length; i++) {
             l = 0;
             r = right;
+            // 找到大于envelopes[i].h的下一个位置
             while (l <= r) {
                 m = (l + r) / 2;
-                if (envelopes[i].h > height[m]) {
+                if (envelopes[i].h > ends[m]) {
                     l = m + 1;
                 } else {
                     r = m - 1;
                 }
             }
-            // height[] 中扩展的最右的位置
+            // height[] 中扩展的最右的位置，l有可能是right范围之内的值
             right = Math.max(right, l);
-            height[l] = envelopes[i].h;
+            ends[l] = envelopes[i].h;
         }
+        // right是下标，所以要返回 right + 1
         return right + 1;
     }
 }
