@@ -31,17 +31,17 @@ public class _26RemoveDuplicatesFromSortedArray {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        // 需要填充新值的位置
-        int pre = 1;
-        // 当前判断哪个下标的值
+        // 当前的cur是需要copy还是跳过？
         int cur = 1;
-        while (pre < nums.length) {
-            if (nums[pre] == nums[cur - 1]) {
-                pre++;
+        // 新数组的长度
+        int newLen = 1;
+        while (cur < nums.length) {
+            if (nums[cur] == nums[newLen - 1]) {
+                cur++;
             } else {
-                nums[cur++] = nums[pre++];
+                nums[newLen++] = nums[cur++];
             }
         }
-        return cur;
+        return newLen;
     }
 }
