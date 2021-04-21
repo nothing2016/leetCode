@@ -105,7 +105,7 @@ public class _91_Decode_Ways {
             } else {
                 int num = (str[i] - '0') * 10 + str[i + 1] - '0';
                 if (num <= 26) {
-                    dp[i] = dp[i + 1] + dp[i + 2];
+                    dp[i] += dp[i + 2];
                 }
             }
         }
