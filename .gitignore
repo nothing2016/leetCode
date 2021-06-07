@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+### IntelliJ IDEA ###
+.idea
+.target
+*.iws
+*.iml
+*.ipr
+*.class
+*.pid
+*.0
+*.0.lock
