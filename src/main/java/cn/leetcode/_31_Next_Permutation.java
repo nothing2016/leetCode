@@ -21,7 +21,7 @@ package cn.leetcode;
  */
 public class _31_Next_Permutation {
     public static void main(String[] args) {
-        int[] nums = {1, 3, 2};
+        int[] nums = {4, 5, 2, 6, 3, 1};
         print(nums);
         new _31_Next_Permutation().nextPermutation(nums);
         print(nums);
@@ -35,17 +35,21 @@ public class _31_Next_Permutation {
         System.out.println("===================");
     }
 
-    //    [4,5,2,6,3,1]
+    //    [4,5,2,6,3,1] ->
+    //    [4,5,3,1,2,6],
     public void nextPermutation(int[] nums) {
         int i = nums.length - 2;
+        // 从尾部找到第一个极高值的前一位，这里找到2
         while (i >= 0 && nums[i] >= nums[i + 1]) {
             i--;
         }
         if (i >= 0) {
+            // 从尾部找到第一个大于nums[i]的值
             int j = nums.length - 1;
             while (j >= 0 && nums[i] >= nums[j]) {
                 j--;
             }
+            // 将大的值交换到i位置
             swap(nums, i, j);
         }
         reverse(nums, i + 1);
@@ -57,6 +61,7 @@ public class _31_Next_Permutation {
         nums[j] = temp;
     }
 
+    // [start,length-1]的区间逆序
     public void reverse(int[] nums, int start) {
         int left = start, right = nums.length - 1;
         while (left < right) {
