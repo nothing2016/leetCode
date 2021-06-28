@@ -37,7 +37,9 @@ public class _149_Max_Points_on_a_Line {
         }
         int ans = 0;
         for (int i = 0; i < N; i++) {
+            // 与point[i]同x轴上的点的个数
             int x = 1;
+            // 与point[i]同y轴上的点的个数
             int y = 1;
             Map<String, Integer> map = new HashMap<>();
             for (int j = 0; j < N; j++) {
